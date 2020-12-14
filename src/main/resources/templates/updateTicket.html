@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+<title>Update Ticket</title>
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="p-2">Update Ticket</h1>
+		<a class="btn btn-secondary" href="/">Home Page</a>
+		<a class="btn btn-dark" href="/listOfTickets">Return to Ticket Management</a>
+		<form th:action="@{/logout}" method="post">
+            <input class="btn btn-danger" type="submit" value="Sign Out"/>
+        </form>
+		<hr />
+		<form th:action="@{/updateTicket/{id}(id=${ticket.ticketId})}" th:object="${ticket}" method="post">
+		  <div class="form-group">
+		    <label for="movieName">Movie Name</label>
+		    <input type="text" class="form-control" th:field="*{movieName}" id="movieName" placeholder="Movie Name" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="custId">Customer Id</label>
+		    <input type="number" class="form-control" th:field="*{custId}" id="custId" placeholder="Customer Id" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('custId')}" th:errors="*{custId}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="amountPaid">Amount Paid</label>
+		    <input type="number" step="0.01" class="form-control" th:field="*{amountPaid}" id="amountPaid" placeholder="Amount Paid" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('amountPaid')}" th:errors="*{amountPaid}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="numberOfTicket">Number of Ticket</label>
+		    <input type="number" class="form-control" th:field="*{numberOfTicket}" id="numberOfTicket" placeholder="Number of Ticket" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('numberOfTicket')}" th:errors="*{numberOfTicket}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="date">Date</label>
+		    <input type="date" class="form-control" th:field="*{date}" id="date" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="time">Time</label>
+		    <input type="time" class="form-control" th:field="*{time}" id="time" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
+		  </div>
+		  <div class="form-group">
+		    <label for="venue">Venue</label>
+		    <input type="text" class="form-control" th:field="*{venue}" id="venue" />
+		    <span class="text-danger" th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}"></span>
+		  </div>
+		  <div class="form-group">
+			<input class="btn btn-info" type="submit" value="Update Ticket" />
+		  </div>
+		</form>
+	</div>
+</body>
+</html>
